@@ -31,7 +31,7 @@ Abaixo estão os passos e funcionalidades da plataforma, cada um acompanhado por
 ### 1. **Iniciando a Aplicação:**
 Após rodar o servidor e clicar no link no terminal, a página será aberta no localhost, iniciando com a seguinte interface:
 <p align="center">
-<img src="https://github.com/user-attachments/assets/89eb7ca0-8dbd-436a-9629-f08a6df1fb5e" alt="" width="900">
+<img src="https://github.com/user-attachments/assets/30544573-3857-4c01-8a92-1d05ddd4cb04" alt="" width="900">
 </p>
 
 ### 2. **Cadastro de Usuário:**
@@ -40,7 +40,7 @@ Crie um novo nome de usuário e senha para se registrar.
 *Obs: Se o nome de usuário já estiver registrado, você será redirecionado para a página de login.*
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/ac835055-8e92-40bd-b4cc-351b002b080f" alt="" width="500">
+<img src="https://github.com/user-attachments/assets/63e0041e-c9c4-48a9-a545-c8d12d2a99e1" alt="" width="500">
 </p>
 
 ### 3. **Segurança das Senhas:**
