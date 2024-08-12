@@ -31,7 +31,7 @@ Abaixo estão os passos e funcionalidades da plataforma, cada um acompanhado por
 ### 1. **Iniciando a Aplicação:**
 Após rodar o servidor e clicar no link no terminal, a página será aberta no localhost, iniciando com a seguinte interface:
 <p align="center">
-<img src="https://github.com/user-attachments/assets/ac835055-8e92-40bd-b4cc-351b002b080f" alt="" width="900">
+<img src="https://github.com/user-attachments/assets/89eb7ca0-8dbd-436a-9629-f08a6df1fb5e" alt="" width="900">
 </p>
 
 ### 2. **Cadastro de Usuário:**
