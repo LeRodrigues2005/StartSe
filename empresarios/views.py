@@ -3,11 +3,16 @@ from .models import Empresas, Documento, Metricas
 from django.contrib import messages
 from django.contrib.messages import constants
 from investidores.models import PropostaInvestimento
+from django.utils import timezone
+from datetime import timedelta
 
 def cadastrar_empresa(request):
     # Validação de segurança (importante!!!): o usuário só pode acessar a url cadastrar_empresa se ele estiver logado, se não ele é redirecionado à pág de login
+    # Validação de segurança
     if not request.user.is_authenticated:  
+        print("Usuário não autenticado")
         return redirect('/usuarios/logar')
+    print(f"Usuário autenticado: {request.user}")
 
     if request.method == "GET":
         return render(request, 'cadastrar_empresa.html', {'tempo_existencia': Empresas.tempo_existencia_choices, 'areas': Empresas.area_choices })
@@ -26,7 +31,7 @@ def cadastrar_empresa(request):
         pitch = request.FILES.get('pitch')
         logo = request.FILES.get('logo')
 
-        # TODO FEITO: realizar validação de campos (ver se o usuario preencheu todos os campos corretamente)
+        # validação de campos (ver se o usuario preencheu todos os campos corretamente)
 
         # Validação dos campos
         if not all([nome, cnpj, site, tempo_existencia, descricao, data_final, percentual_equity, estagio, area, publico_alvo, valor, pitch, logo]):
@@ -68,7 +73,7 @@ def listar_empresas(request):
     print(f"Usuário autenticado: {request.user}")  # print para ver as logs pelo terminal
 
     if request.method == "GET":
-        # TODO quase FEITO: realizar os filtros das empresas (ex: listar só as empresas que tem o nome que pesquisei na barra de pesquisa "pesquisar empresa"). colocar essa validação do usuário em TODAS as views
+        # filtros das empresas
         empresa_query = request.GET.get('empresa', '')  # verifica se foi feito um filtro de pesquisa
         if empresa_query:  # se foi, as empresas do usuário que contém os caracteres digitados são mostradas
             empresas = Empresas.objects.filter(user=request.user, nome__icontains=empresa_query)
@@ -79,6 +84,12 @@ def listar_empresas(request):
 
 
 def empresa(request, id):
+    # Validação de segurança
+    if not request.user.is_authenticated:  
+        print("Usuário não autenticado")
+        return redirect('/usuarios/logar')
+    print(f"Usuário autenticado: {request.user}")
+
     empresa = Empresas.objects.get(id=id)  # seleciona a empresa correspondente ao id
 
     if empresa.user != request.user:
@@ -108,6 +119,12 @@ def empresa(request, id):
 
 
 def add_doc(request, id):
+    # Validação de segurança
+    if not request.user.is_authenticated:  
+        print("Usuário não autenticado")
+        return redirect('/usuarios/logar')
+    print(f"Usuário autenticado: {request.user}")
+
     empresa = Empresas.objects.get(id=id)
     titulo = request.POST.get('titulo')
     arquivo = request.FILES.get('arquivo')
@@ -138,6 +155,12 @@ def add_doc(request, id):
     
 
 def excluir_dc(request, id):
+    # Validação de segurança
+    if not request.user.is_authenticated:  
+        print("Usuário não autenticado")
+        return redirect('/usuarios/logar')
+    print(f"Usuário autenticado: {request.user}")
+
     documento = Documento.objects.get(id=id)
     if documento.empresa.user != request.user:
         messages.add_message(request, constants.ERROR, "Esse documento não é seu")
@@ -149,6 +172,12 @@ def excluir_dc(request, id):
 
 
 def add_metrica(request, id):
+    # Validação de segurança
+    if not request.user.is_authenticated:  
+        print("Usuário não autenticado")
+        return redirect('/usuarios/logar')
+    print(f"Usuário autenticado: {request.user}")
+
     empresa = Empresas.objects.get(id=id)
     titulo = request.POST.get('titulo')
     valor = request.POST.get('valor')
@@ -165,6 +194,12 @@ def add_metrica(request, id):
 
 
 def gerenciar_proposta(request, id):
+    # Validação de segurança
+    if not request.user.is_authenticated:  
+        print("Usuário não autenticado")
+        return redirect('/usuarios/logar')
+    print(f"Usuário autenticado: {request.user}")
+
     acao = request.GET.get('acao')
     pi = PropostaInvestimento.objects.get(id=id)
 
